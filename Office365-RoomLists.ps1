@@ -15,6 +15,9 @@ Get-Mailbox -ResultSize unlimited | select name,PrimarySmtpAddress,RecipientType
 #Get Any room lists that have been setup : 
 Get-DistributionGroup | select Displayname,RecipientTypeDetails | Where {$_.RecipientTypeDetails-eq "RoomList"}
 
+#Get Calendar Processing
+Get-CalendarProcessing -Identity NYC-Conf-A | fl
+
 #Room Creation and Modifications
 
 #Create Room List
@@ -24,5 +27,6 @@ New-DistributionGroup -Name "London" -DisplayName "London" –PrimarySmtpAddress
 Add-DistributionGroupMember –Identity "London" -Member Archimedes1@domain.com
 
 #Modify Settings 
+# The string below Adds the Users name to the Subject, Deletes the Subject, Leaves any attachments, and Leaves and text in the Body of the Invite. The outcome of this is a Room Caledard that shows who booked the room, but doesnt show the subject. 
+Set-CalendarProcessing -Identity NYC-Conf-A@domain.com -AddOrganizerToSubject $true -DeleteSubject $true -DeleteAttachments $false -DeleteComments $false
 
-Set-CalendarProcessing -Identity NYC-Conf-A@domain.com -AddOrganizerToSubject $true -DeleteSubject $true
