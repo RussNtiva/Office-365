@@ -4,13 +4,13 @@
 #Get Commands : 
 
 #Get Basic Info about a Room MB
-Get-Mailbox -Identity "Room Name" 
+Get-Mailbox -Identity "Test Room" | Format-List 
 
 #Gets listing of Rooms setup with the Room Finder
 Get-DistributionGroupMember -Identity "Room Finder" 
 
 #Get listing of All RoomMailboxes
-Get-Mailbox -ResultSize unlimited | select name,RecipientTypeDetails | Where {$_.RecipientTypeDetails-eq "RoomMailbox"}
+Get-Mailbox -ResultSize unlimited | select name,PrimarySmtpAddress,RecipientTypeDetails | Where {$_.RecipientTypeDetails-eq "RoomMailbox"}
 
 #Get Any room lists that have been setup : 
 Get-DistributionGroup | select Displayname,RecipientTypeDetails | Where {$_.RecipientTypeDetails-eq "RoomList"}
@@ -22,3 +22,7 @@ New-DistributionGroup -Name "London" -DisplayName "London" –PrimarySmtpAddress
 
 #Add Room to Group. In this case London is a room list, and Archimedes1 is the Room being added. 
 Add-DistributionGroupMember –Identity "London" -Member Archimedes1@domain.com
+
+#Modify Settings 
+
+Set-CalendarProcessing -Identity NYC-Conf-A@domain.com -AddOrganizerToSubject $true -DeleteSubject $true
