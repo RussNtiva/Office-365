@@ -36,3 +36,6 @@ Set-Mailbox ChiWarnerBigTrain@domain.com -DisplayName "CHI Warner Training Room"
 # The string below Adds the Users name to the Subject, Deletes the Subject, Leaves any attachments, and Leaves and text in the Body of the Invite. The outcome of this is a Room Caledard that shows who booked the room, but doesnt show the subject. 
 Set-CalendarProcessing -Identity NYC-Conf-A@domain.com -AddOrganizerToSubject $true -DeleteSubject $true -DeleteAttachments $false -DeleteComments $false
 
+#Permissions for Calendar : 
+Add-MailboxFolderPermission "NY Office Small Conference Room:\Calendar" -User RoomAdmins@domain.com -AccessRights Editor
+
