@@ -13,6 +13,6 @@ $exchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -Connecti
 Import-PSSession $exchangeSession -DisableNameChecking
 $ccSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $credential -Authentication Basic -AllowRedirection
 Import-PSSession $ccSession -Prefix cc 
-Connect-SPOService -Url https://appriver3651007591-admin.sharepoint.com
+
 
 
