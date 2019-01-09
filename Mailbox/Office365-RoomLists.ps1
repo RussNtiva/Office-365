@@ -52,7 +52,7 @@ Add-MailboxFolderPermission "NYC-Conf-A:\Calendar" -User user@domain.com -Access
 Set-MailboxFolderPermission "NY Central Park Conference Room:\Calendar" -User "Default" -AccessRights AvailabilityOnly
 
 # Script to Set Delegate, and Cal Processing properties for NYC
-Import-csv C:\ActiveScripts\1-8-2019\NYCRooms.csv | foreach {Set-calendarprocessing -Identity $_.alias –ResourceDelegate newyorkapprover@domain.com --AutomateProcessing:AutoAccept -deletecomments $false -deleteattachments $false -deletesubject $false -MaximumDurationInMinutes 1440 -BookingWindowInDays 1080 -AllRequestInPolicy $true -AllBookInPolicy $false -DeleteNonCalendarItems $false}
+Import-csv C:\ActiveScripts\1-8-2019\NYCRooms.csv | foreach {Set-calendarprocessing -Identity $_.alias –ResourceDelegate newyorkapprover@domain.com -AutomateProcessing:AutoAccept -deletecomments $false -deleteattachments $false -deletesubject $false -MaximumDurationInMinutes 1440 -BookingWindowInDays 1080 -AllRequestInPolicy $true -AllBookInPolicy $false -DeleteNonCalendarItems $false}
 
 # Script to add full access rights for the Con Manager Group to Room Mailboxes
 
